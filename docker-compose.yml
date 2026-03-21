@@ -1,40 +1,56 @@
 services:
-  server:
-    build: ./server
-    container_name: my-server
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./server:/app
-      - /app/node_modules
-    environment:
-      NODE_ENV: development
-      PORT: 8080
-    env_file:
-      - .env
-
-  client:
-    build: ./client
-    container_name: my-client
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    environment:
-      NODE_ENV: development
-    env_file:
-      - .env
-    depends_on:
-      - server
-
   mongo:
     image: mongo:6
-    container_name: my-mongo
+    container_name: lanka-basket-mongo
+    restart: unless-stopped
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile
+    container_name: lanka-basket-server
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      NODE_ENV: production
+      MONGODB_URI: ${MONGODB_URI:-mongodb://mongo:27017/lanka_basket}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+      SECRET_KEY_ACCESS_TOKEN: ${SECRET_KEY_ACCESS_TOKEN}
+      SECRET_KEY_REFRESH_TOKEN: ${SECRET_KEY_REFRESH_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      BREVO_API_KEY: ${BREVO_API_KEY}
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PASS: ${EMAIL_PASS}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      CSRF_SECRET: ${CSRF_SECRET}
+      SESSION_SECRET: ${SESSION_SECRET}
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8080}
+        VITE_STRIPE_PUBLIC_KEY: ${VITE_STRIPE_PUBLIC_KEY}
+    container_name: lanka-basket-client
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - server
 
 volumes:
   mongo-data:

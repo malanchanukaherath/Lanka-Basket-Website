@@ -125,4 +125,4 @@ https://github.com/Chanith27/Lanka-Basket-Website/blob/main/Backend%20Test%20Rep
 - **B.M.N.N. Bandara (IM/2022/050)** - Contributed to server and admin-side UI, including order controllers, payment integration, and key admin components.
 - **W.M.A.M. Madushan (IM/2022/025)** - Designed and implemented the overall backend server structure.
 - **J.M.T. Sanjana (IM/2022/130)** - Developed components and backend routes for product and order management, including editing, viewing, and alert notifications.
-- **H.M.M.C.H. Herath (IM/2022/057)** - Managed file uploads, middleware, category routing, Dockerized the application, and supported application hosting tasks.
+- **H.M.M.C.H. Herath (IM/2022/057)** - Managed file uploads, middleware, category routing, and supported application hosting tasks.
