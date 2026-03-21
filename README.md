@@ -109,6 +109,63 @@ cd server
 npm start
 ```
 
+## Docker Setup
+
+### 1. Configure Docker Environment
+
+- Copy `.env.docker.example` to `.env` in the project root.
+- Replace placeholder values with real values.
+
+### 2. Build and Run with Docker Compose
+
+```bash
+docker compose up --build -d
+```
+
+Services include healthchecks and startup ordering:
+
+- `mongo` must become healthy before `server` starts
+- `server` must become healthy before `client` starts
+
+### 3. Stop Containers
+
+```bash
+docker compose down
+```
+
+### 4. Stop and Remove Volumes
+
+```bash
+docker compose down -v
+```
+
+## CI/CD (GitHub Actions)
+
+Two workflows are configured:
+
+- `CI` (`.github/workflows/ci.yml`)
+  - Runs on push and pull requests to `main`
+  - Installs dependencies
+  - Runs client lint/build and server build checks
+  - Validates Docker builds for both `client` and `server`
+
+- `CD - Docker Images` (`.github/workflows/dockerhub-ci.yml`)
+  - Runs automatically after `CI` succeeds on `main`
+  - Can also be triggered manually
+  - Builds and pushes Docker images for client and server to Docker Hub
+
+### Required GitHub Secrets
+
+- `DOCKERHUB_USERNAME`
+- `DOCKERHUB_TOKEN`
+- `VITE_API_URL` (optional if using repository variable)
+- `VITE_STRIPE_PUBLIC_KEY` (optional if using repository variable)
+
+### Optional GitHub Variables
+
+- `VITE_API_URL`
+- `VITE_STRIPE_PUBLIC_KEY`
+
 ## Project Documentation
 
 ### API Documentation
