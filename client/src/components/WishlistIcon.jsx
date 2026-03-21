@@ -55,7 +55,7 @@ const WishlistIcon = () => {
             }
             dispatch(removeFromWishlist(productId))
             toast.success(`${productName} removed from wishlist`)
-        } catch (error) {
+        } catch {
             toast.error('Failed to remove item from wishlist')
         }
     }
@@ -82,7 +82,7 @@ const WishlistIcon = () => {
                 // Refresh cart items to update the cart display
                 fetchCartItem()
             }
-        } catch (error) {
+        } catch {
             toast.error('Failed to add item to cart')
         }
     }
@@ -106,21 +106,6 @@ const WishlistIcon = () => {
                 return <FaInfoCircle className="text-blue-500" />
             default:
                 return <FaInfoCircle className="text-gray-500" />
-        }
-    }
-    
-    const getAlertBgColor = (type) => {
-        switch (type) {
-            case 'out_of_stock':
-                return 'bg-red-50 border-red-200'
-            case 'back_in_stock':
-                return 'bg-green-50 border-green-200'
-            case 'low_stock':
-                return 'bg-yellow-50 border-yellow-200'
-            case 'price_drop':
-                return 'bg-blue-50 border-blue-200'
-            default:
-                return 'bg-gray-50 border-gray-200'
         }
     }
     

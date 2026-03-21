@@ -6,7 +6,6 @@ import Axios from '../utils/Axios';
 import SummaryApi from '../common/SummaryApi';
 import toast from 'react-hot-toast';
 import AxiosToastError from '../utils/AxiosToastError';
-import { useEffect } from 'react';
 
 const UploadSubCategoryModel = ({close, fetchData}) => {
     const [subCategoryData,setSubCategoryData] = useState({
@@ -138,7 +137,7 @@ const UploadSubCategoryModel = ({close, fetchData}) => {
                             {/*display value**/}
                             <div className='flex flex-wrap gap-2'>
                                 {
-                                    subCategoryData.category.map((cat,index)=>{
+                                    subCategoryData.category.map((cat)=>{
                                         return(
                                             <p key={cat._id+"selectedValue"} className='bg-white shadow-md px-1 m-1 flex items-center gap-2'>
                                                 {cat.name}
@@ -168,7 +167,7 @@ const UploadSubCategoryModel = ({close, fetchData}) => {
                             >
                                 <option value={""}>Select Category</option>
                                 {
-                                    allCategory.map((category,index)=>{
+                                    allCategory.map((category)=>{
                                         return(
                                             <option value={category?._id} key={category._id+"subcategory"}>{category?.name}</option>
                                         )

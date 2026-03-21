@@ -11,7 +11,6 @@ const UploadCategoryModel = ({close, fetchData}) => {
         name : "",
         image : ""
     })
-    const [loading,setLoading] = useState(false)
 
     const handleOnChange = (e)=>{
         const { name, value} = e.target
@@ -29,7 +28,6 @@ const UploadCategoryModel = ({close, fetchData}) => {
 
 
         try {
-            setLoading(true)
             const response = await Axios({
                 ...SummaryApi.addCategory,
                 data : data
@@ -43,8 +41,6 @@ const UploadCategoryModel = ({close, fetchData}) => {
             }
         } catch (error) {
             AxiosToastError(error)
-        }finally{
-            setLoading(false)
         }
     }
 

@@ -139,7 +139,7 @@ const EditSubCategory = ({close,data,fetchData}) => {
                             {/*display value**/}
                             <div className='flex flex-wrap gap-2'>
                                 {
-                                    subCategoryData.category.map((cat,index)=>{
+                                    subCategoryData.category.map((cat)=>{
                                         return(
                                             <p key={cat._id+"selectedValue"} className='bg-white shadow-md px-1 m-1 flex items-center gap-2'>
                                                 {cat.name}
@@ -169,7 +169,7 @@ const EditSubCategory = ({close,data,fetchData}) => {
                             >
                                 <option value={""}>Select Category</option>
                                 {
-                                    allCategory.map((category,index)=>{
+                                    allCategory.map((category)=>{
                                         return(
                                             <option value={category?._id} key={category._id+"subcategory"}>{category?.name}</option>
                                         )

@@ -76,14 +76,6 @@ const TrackOrder = () => {
     }
   }
 
-  const handleSearch = () => {
-    if (!orderNumber.trim()) {
-      toast.error('Please enter an order number')
-      return
-    }
-    navigate(`/track-order?orderId=${orderNumber}`)
-  }
-
   const handleOrderSelect = (orderId) => {
     navigate(`/track-order?orderId=${orderId}`)
   }
@@ -375,7 +367,7 @@ const TrackOrder = () => {
 
               {/* Timeline Steps */}
               <div className="space-y-6">
-                {getTimelineSteps().map((step, index) => (
+                {getTimelineSteps().map((step) => (
                   <div key={step.status} className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl transition-all duration-300 ${
                       step.completed 

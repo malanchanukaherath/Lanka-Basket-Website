@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FaCloudUploadAlt, FaImage, FaBoxOpen, FaTags, FaPlus } from "react-icons/fa"
 import { MdDelete, MdClose, MdDescription } from "react-icons/md"
 import { HiOutlineCurrencyDollar, HiOutlineCollection } from "react-icons/hi"

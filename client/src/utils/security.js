@@ -44,7 +44,7 @@ export const sanitizeInput = (input) => {
     
     // Remove potentially dangerous characters
     sanitized = sanitized
-        .replace(/[<>\"']/g, '') // Remove dangerous HTML characters
+        .replace(/[<>"']/g, '') // Remove dangerous HTML characters
         .replace(/javascript:/gi, '') // Remove javascript: URLs
         .replace(/on\w+\s*=/gi, '') // Remove event handlers
         .trim()
@@ -66,8 +66,8 @@ export const isValidPhone = (phone) => {
 
 // XSS Protection for dynamic content
 export const sanitizeHTML = (html) => {
-    if (typeof DOMPurify !== 'undefined') {
-        return DOMPurify.sanitize(html)
+    if (typeof window !== 'undefined' && window.DOMPurify) {
+        return window.DOMPurify.sanitize(html)
     }
     
     // Fallback sanitization

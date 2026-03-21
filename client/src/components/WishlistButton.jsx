@@ -50,7 +50,7 @@ const WishlistButton = ({
                         ...SummaryApi.removeFromWishlist,
                         data: { productId: product._id }
                     })
-                } catch (apiError) {
+                } catch {
                     // If backend fails, continue with local storage as fallback
                     console.warn('Backend wishlist API not available, using localStorage fallback')
                 }
@@ -71,7 +71,7 @@ const WishlistButton = ({
                             stock: product.stock || 0
                         }
                     })
-                } catch (apiError) {
+                } catch {
                     // If backend fails, continue with local storage as fallback
                     console.warn('Backend wishlist API not available, using localStorage fallback')
                 }

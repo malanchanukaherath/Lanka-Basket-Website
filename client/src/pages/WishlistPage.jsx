@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { BsHeart, BsHeartFill, BsCart4, BsTrash, BsSearch, BsFilter, BsGrid, BsList, BsExclamationTriangle } from 'react-icons/bs'
@@ -73,7 +73,7 @@ const WishlistPage = () => {
             }
             dispatch(removeFromWishlist(productId))
             toast.success(`${productName} removed from wishlist`)
-        } catch (error) {
+        } catch {
             toast.error('Failed to remove item from wishlist')
         } finally {
             setIsLoading(false)
@@ -90,7 +90,7 @@ const WishlistPage = () => {
             }
             dispatch(clearWishlist())
             toast.success('Wishlist cleared successfully')
-        } catch (error) {
+        } catch {
             toast.error('Failed to clear wishlist')
         } finally {
             setIsLoading(false)
@@ -114,7 +114,7 @@ const WishlistPage = () => {
                 toast.success(`${product.name} added to cart`)
                 fetchCartItem()
             }
-        } catch (error) {
+        } catch {
             toast.error('Failed to add item to cart')
         } finally {
             setIsLoading(false)

@@ -7,7 +7,6 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoSearchOutline, IoNotificationsOutline } from "react-icons/io5";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import useMobile from '../hooks/useMobile';
 import { useSelector } from 'react-redux';
 import UserMenu from './UserMenu';
 import WishlistIcon from './WishlistIcon';
@@ -16,7 +15,6 @@ import { useGlobalContext } from '../provider/GlobalProvider';
 import DisplayCartItem from './DisplayCartItem';
 
 const Header = () => {
-    const [isMobile] = useMobile()
     const location = useLocation()
     const isSearchPage = location.pathname === "/search"
     const navigate = useNavigate()

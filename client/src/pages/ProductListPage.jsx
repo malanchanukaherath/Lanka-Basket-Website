@@ -12,7 +12,7 @@ const ProductListPage = () => {
   const [data, setData] = useState([])
   const [page] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [totalPage, setTotalPage] = useState(1)
+  const [, setTotalPage] = useState(1)
   const params = useParams()
   const AllSubCategory = useSelector(state => state.product.allSubCategory)
   const [DisplaySubCatory, setDisplaySubCategory] = useState([])

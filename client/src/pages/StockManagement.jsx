@@ -20,8 +20,8 @@ const StockManagement = () => {
   const [editingStock, setEditingStock] = useState(null)
   const [newStockValue, setNewStockValue] = useState('')
   const [stockUpdateLoading, setStockUpdateLoading] = useState(false)
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
+  const [page] = useState(1)
+  const [, setTotalPages] = useState(1)
   const [searchParams] = useSearchParams()
 
   // Low stock threshold

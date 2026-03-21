@@ -1077,7 +1077,7 @@ const AdminOrders = () => {
                       Order Items ({selectedOrder.totalItems} items)
                     </h4>
                     <div className='space-y-3'>
-                      {selectedOrder.items.map((item, index) => (
+                      {selectedOrder.items.map((item) => (
                         <div key={item._id} className='bg-gray-50 rounded-lg p-4 flex items-center gap-4'>
                           {item.product_details?.image?.[0] && (
                             <img

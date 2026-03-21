@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import banner from '../assets/banner.jpg'
-import bannerMobile from '../assets/banner-mobile.jpg'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import {Link, useNavigate} from 'react-router-dom'
@@ -16,8 +14,6 @@ const Home = () => {
   const categoryData = useSelector(state => state.product.allCategory)
   const subCategoryData = useSelector(state => state.product.allSubCategory)
   const navigate = useNavigate()
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
   const [scrollAnimations, setScrollAnimations] = useState({})
   
   // Refs for scroll animations
@@ -63,15 +59,6 @@ const Home = () => {
     }
   }, [])
 
-  useEffect(() => {
-    setIsVisible(true)
-    // Auto-slide for hero section
-    const slideInterval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % 3)
-    }, 5000)
-    return () => clearInterval(slideInterval)
-  }, [])
-
   const handleRedirectProductListpage = (id,cat)=>{
       console.log(id,cat)
       const subcategory = subCategoryData.find(sub =>{
@@ -86,33 +73,6 @@ const Home = () => {
       navigate(url)
       console.log(url)
   }
-
-  const heroSlides = [
-    {
-      title: "Fresh Groceries Delivered",
-      subtitle: "Get fresh vegetables, fruits & daily essentials delivered to your doorstep",
-      highlight: "Within 30 Minutes",
-      bgGradient: "from-green-500 via-emerald-500 to-teal-500",
-      icon: <BsLightning className='animate-bounce' />,
-      features: ["🥬 Farm Fresh", "⚡ 30min Delivery", "🚚 Free Shipping"]
-    },
-    {
-      title: "Best Prices Guaranteed",
-      subtitle: "Save more with our exclusive deals and offers on premium quality products",
-      highlight: "Up to 50% Off",
-      bgGradient: "from-orange-500 via-red-500 to-pink-500",
-      icon: <FaFire className='animate-pulse' />,
-      features: ["💰 Best Prices", "🏷️ Daily Deals", "🎁 Special Offers"]
-    },
-    {
-      title: "Premium Quality Products",
-      subtitle: "Handpicked fresh products from trusted farmers and suppliers across Sri Lanka",
-      highlight: "100% Fresh",
-      bgGradient: "from-blue-500 via-purple-500 to-indigo-500",
-      icon: <FaLeaf className='animate-bounce' />,
-      features: ["✅ Quality Assured", "🌱 Organic Options", "📦 Safe Packaging"]
-    }
-  ]
 
   return (
     <div className='min-h-screen bg-white'>

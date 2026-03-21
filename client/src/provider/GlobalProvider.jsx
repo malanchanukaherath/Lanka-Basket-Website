@@ -112,7 +112,7 @@ const GlobalProvider = ({children}) => {
         if(responseData.success){
           dispatch(handleAddAddress(responseData.data))
         }
-      } catch (error) {
+          } catch {
           // AxiosToastError(error)
       }
     }

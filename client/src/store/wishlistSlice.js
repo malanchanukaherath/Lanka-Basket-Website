@@ -142,7 +142,8 @@ const wishlistSlice = createSlice({
                             timestamp: new Date().toISOString(),
                             isRead: false
                         })
-                    }
+                        }
+                        saveNotificationsToStorage(state.stockAlerts)
                 }
                 
                 // Stock status change notifications
@@ -157,6 +158,7 @@ const wishlistSlice = createSlice({
                         timestamp: new Date().toISOString(),
                         isRead: false
                     })
+                    saveNotificationsToStorage(state.stockAlerts)
                 } else if (!wasInStock && isNowInStock) {
                     // Item came back in stock
                     state.stockAlerts.push({
@@ -168,6 +170,7 @@ const wishlistSlice = createSlice({
                         timestamp: new Date().toISOString(),
                         isRead: false
                     })
+                    saveNotificationsToStorage(state.stockAlerts)
                 } else if (isNowInStock && stock <= 5) {
                     // Low stock warning
                     state.stockAlerts.push({
@@ -179,6 +182,7 @@ const wishlistSlice = createSlice({
                         timestamp: new Date().toISOString(),
                         isRead: false
                     })
+                    saveNotificationsToStorage(state.stockAlerts)
                 }
             }
         },
@@ -187,6 +191,7 @@ const wishlistSlice = createSlice({
             const notification = state.stockAlerts.find(alert => alert.id === notificationId)
             if (notification) {
                 notification.isRead = true
+                saveNotificationsToStorage(state.stockAlerts)
             }
         },
         clearNotifications: (state) => {
@@ -194,6 +199,7 @@ const wishlistSlice = createSlice({
         },
         clearStockAlerts: (state) => {
             state.stockAlerts = []
+            saveNotificationsToStorage(state.stockAlerts)
         },
         removeExpiredNotifications: (state) => {
             const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
@@ -203,6 +209,7 @@ const wishlistSlice = createSlice({
             state.stockAlerts = state.stockAlerts.filter(
                 alert => alert.timestamp > twentyFourHoursAgo
             )
+            saveNotificationsToStorage(state.stockAlerts)
         }
     }
 })
